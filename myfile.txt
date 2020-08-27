@@ -1,4 +1,2 @@
 Hello this is a text file
 this is the second line
-THREE ON THIRDTHREE ON THIRD
-THREE ON THIRD
