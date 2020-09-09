@@ -127,7 +127,7 @@ else:
     print('X is not less than five')
 
 # break: breaks out of the current closest enclosing loop
-# continue: goes to the top of the closest enclosing lopp
+# continue: goes to the top of the closest enclosing loop
 # pass: does nothing at all
 
 x = [1, 2, 3]
