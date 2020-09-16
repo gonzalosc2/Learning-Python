@@ -30,3 +30,18 @@ c, b
 
 # Random library
 random.randint(1, 6)
+
+# FUNCTIONS
+# Parenthesis are mandatory
+def function_name():
+    print('Hey!')
+    return print('Python will finish the function here, anything after will not be ran')
+    print('NOOOO!')
+
+# when None appears it means that we forgot to use return in a function
+
+def even_odd(number):
+    if number%2==0:
+        return 'Even'
+    else:
+        return 'Odd'
