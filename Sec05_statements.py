@@ -226,3 +226,31 @@ result
 type(result)
 float(result)
 int(result)
+
+# LIST COMPREHENSIONS
+mystring = 'hello'
+
+mylist = []
+
+for letter in mystring:
+    mylist.append(letter)
+
+# Flatting the for loop
+myList = [letter for letter in mystring]
+mylist1 = [num for num in range(0,10)]
+mylist2 = [num**2 for num in range(0,10)]
+mylist3 = [num**2 for num in range(0,10) if num%2==0]
+
+celcius = [0,10,20,34.5]
+fahrenheit = [( (9/5)*temp+32) for temp in celcius]
+
+## IF and ELSE in a list COMPREHENSIONS (better to separete it for readeability)
+results = [x if x%2==0 else 'ODD' for x in range(0,11)]
+
+## Nested loops
+mylist = []
+for x in [2,4,6]:
+    for y in [100,200,300]:
+        mylist.append(x*y)
+
+mylist = [x*y for x in [2,4,6] for y in [100,200,300]]
