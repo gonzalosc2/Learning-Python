@@ -45,3 +45,32 @@ def even_odd(number):
         return 'Even'
     else:
         return 'Odd'
+
+# SLEEP
+from time import sleep  # any library should be loaded at the beginning of the script
+
+sleep(1)  # it suspends the execution of the script for the specified # of seconds (e.g., 1)
+
+h = 2
+m = 1
+s = 30
+
+print("%1d% 02d:%02d" % (h,m,s))
+print("%1d:%02d:%02d" % (h,m,s))
+print("%3d:%02d:%02d" % (h,m,s))
+print("%02d:%02d:%02d" % (h,m,s))
+
+# % recognizes that we want to change the format of the variable
+# %s - String (or any object with a string representation, like numbers)
+# %d - Integers
+# %f - Floating point numbers
+# %.<number of digits>f - Floating point numbers with a fixed amount of digits to the right of the dot.
+# %x/%X - Integers in hex representation (lowercase/uppercase)
+
+# WHILE
+# when using "continue", it jumps to the next iteration of the while, no matter what follows after the "continue"
+# it skips the next lines and star from the beginning of the next iteration
+
+
+
+t
