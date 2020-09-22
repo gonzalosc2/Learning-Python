@@ -33,7 +33,7 @@ def main():
     # Validating the input data
     valid = False
     while not valid:
-        answer = input('Please answer: a, b, c or, d')
+        answer = input('Please answer: a, b, c or, d:  ')
         if answer == "a" or answer == "b" or answer == "c" or answer == "d":
             valid = True
         else:
@@ -44,13 +44,12 @@ def main():
         valid = False
         while not valid:
             try:
-                temp_c = float(input('Please specify the temperature value in degrees Centrigrade'))
-                if type(temp_c) != float:
-                    print('That is an incorrect value, please use numerical values')
-                else:
+                temp_c = float(input('Please specify the temperature value in degrees Centrigrade:  '))
+                if type(temp_c) == float:
                     valid = True
             except ValueError:
                 print('That is an incorrect value, please use numerical values')
+
         return print(round(temperature.centigrade_to_fahrenheit(temp_c)))
 
     # Converting a Fahrenheit temperature to a Centigrade temperature
@@ -58,13 +57,12 @@ def main():
         valid = False
         while not valid:
             try:
-                temp_f = float(input('Please specify the temperature value in degrees Fahrenheit'))
-                if type(temp_f) != float:
-                    print('That is an incorrect value, please use numerical values')
-                else:
+                temp_f = float(input('Please specify the temperature value in degrees Fahrenheit:  '))
+                if type(temp_f) == float:
                     valid = True
             except ValueError:
                 print('That is an incorrect value, please use numerical values')
+
         return print(round(temperature.fahrenheit_to_centigrade(temp_f)))
 
     # Calculating a wind chill factor (the "old" one)
@@ -72,14 +70,14 @@ def main():
         valid = False
         while not valid:
             try:
-                wind = float(input('Please specify the wind speed value in miles per hour'))
-                temp_f = float(input('Please specify the temperature value in degrees Fahrenheit'))
-                if type(temp_f) != float or type(wind) != float:
-                    print('That is an incorrect value, please use numerical values')
-                else:
+                temp_f = float(input('Please specify the temperature value in degrees Fahrenheit:  '))
+                wind = float(input('Please specify the wind speed value in miles per hour:  '))
+                if type(temp_f) == float and type(wind) == float:
                     valid = True
             except ValueError:
-                print('That is an incorrect value, please use numerical values')
+                print('That is an incorrect value; use numerical values only. \
+                    \nPlease provide temperature and wind speed information again')
+
         return print(round(temperature.wind_chill_factor(TEMPERATURE = temp_f,WIND = wind)))
 
     # Exiting  the application
