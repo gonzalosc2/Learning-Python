@@ -37,7 +37,7 @@ def main():
         if answer == "a" or answer == "b" or answer == "c" or answer == "d":
             valid = True
         else:
-            print('The answer is incorrect. Please enter a valid answer (a, b, c, or d)')
+            print('The answer is incorrect. Please enter a valid answer (a, b, c, or d).')
 
     # Converting a Centigrade temperature to a Fahrenheit temperature
     if answer == "a":
@@ -48,7 +48,7 @@ def main():
                 if type(temp_c) == float:
                     valid = True
             except ValueError:
-                print('That is an incorrect value, please use numerical values')
+                print('That is an incorrect value, please use numerical values.')
 
         return print(round(temperature.centigrade_to_fahrenheit(temp_c)))
 
@@ -61,7 +61,7 @@ def main():
                 if type(temp_f) == float:
                     valid = True
             except ValueError:
-                print('That is an incorrect value, please use numerical values')
+                print('That is an incorrect value, please use numerical values.')
 
         return print(round(temperature.fahrenheit_to_centigrade(temp_f)))
 
@@ -76,7 +76,7 @@ def main():
                     valid = True
             except ValueError:
                 print('That is an incorrect value; use numerical values only. \
-                    \nPlease provide temperature and wind speed information again')
+                    \nPlease provide temperature and wind speed information again.')
 
         return print(round(temperature.wind_chill_factor(TEMPERATURE = temp_f,WIND = wind)))
 
