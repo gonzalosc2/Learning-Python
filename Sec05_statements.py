@@ -1,9 +1,10 @@
-"""
-Name   : Section 05 - Python Statements
-Course : 2020 Complete Python Bootcamps: From Zero to Hero in Python
-Purpose: Lecture notes
-Author : gsalazar
-"""
+####################################
+# author: Gonzalo Salazar
+# course: 2020 Complete Python Bootcamps: From Zero to Hero in Python
+# purpose: lecture notes
+# description: Section 05 - Python Statements
+# other: N/A
+####################################
 
 # Control Flow: We only want a certain code to execute when a particular
 # condition has been met

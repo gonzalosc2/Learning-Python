@@ -1,9 +1,10 @@
-"""
-Name   : Section 06 - Methods and Functions
-Course : 2020 Complete Python Bootcamps: From Zero to Hero in Python
-Purpose: Lecture notes
-Author : gsalazar
-"""
+####################################
+# author: Gonzalo Salazar
+# course: 2020 Complete Python Bootcamps: From Zero to Hero in Python
+# purpose: lecture notes
+# description: Section 06 - Methods and Functions
+# other: N/A
+####################################
 
 # METHODS
 # Built-in objects in Python.
