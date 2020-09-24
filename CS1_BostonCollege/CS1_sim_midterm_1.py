@@ -1,4 +1,11 @@
 ####################################
+# author: Gonzalo Salazar
+# course: Computer Science 1 at Boston College
+# assigment: Midterm 1 - Simulation
+# description: Sketch of notes used to answer the midterm
+####################################
+
+####################################
 import random as rd
 
 def comp_x_comp():

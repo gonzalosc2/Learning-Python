@@ -1,9 +1,9 @@
-"""
-Name   : Lecture
-Course : Computer Science 1
-Purpose: Lecture notes
-Author : gsalazar
-"""
+####################################
+# author: Gonzalo Salazar
+# purpose: lecture notes
+# course: Computer Science 1 at Boston College
+# other: N/A
+####################################
 
 # Modules or libraries
 import random
