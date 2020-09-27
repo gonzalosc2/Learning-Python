@@ -6,6 +6,7 @@
 # other: N/A
 ####################################
 
+#recall: to set working directory
 #cd ..
 #cd Python/Udemy_PythonBootcamp/MilestoneProject_1
 
