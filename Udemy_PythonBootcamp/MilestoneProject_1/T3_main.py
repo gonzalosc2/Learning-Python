@@ -5,3 +5,16 @@
 # description: main file
 # other: N/A
 ####################################
+
+#cd ..
+#cd Python/Udemy_PythonBootcamp/MilestoneProject_1
+
+import T3_functions as fx
+
+while fx.game() == True:
+    if fx.replay() in ['y','Y']:
+        continue
+    else:
+        break
+
+exit()
