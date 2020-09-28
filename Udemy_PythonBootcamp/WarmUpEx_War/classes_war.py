@@ -56,5 +56,37 @@ class Deck():
 #new_deck.shuffle()
 #for card_object in new_deck.all_cards:
 #    print(card_object)
-#new_deck.draw_card()
+#my_card=new_deck.draw_card()
 #len(new_deck.all_cards)
+
+### Player class ###
+class Player():
+
+    def __init__(self,name):
+        self.name = name
+        self.all_cards = []
+
+    def remove_one(self):
+        return self.all_cards.pop(0)  #removes the card from the top of the deck
+
+    def add_cards(self,new_cards):
+        if type(new_cards) == type([]):
+            # for lists of multiple card objects
+            self.all_cards.extend(new_cards)
+        else:
+            #for a single card object
+            self.all_cards.append(new_cards)
+
+    def __str__(self):
+        return f'Player {self.name} has {len(self.all_cards)} cards.'
+
+#.append(LIST/VALUE) adds a LIST/VALUE to an existing list. This causes nested
+#                    lists if we use a LIST as an input.
+#.extend(LIST2) merges LIST2 with the existing list.
+
+#checking
+#new_player = Player('Gonzalo')
+#print(new_player)
+#new_player.add_cards(my_card)
+#print(new_player)
+#print(new_player.all_cards[0])
