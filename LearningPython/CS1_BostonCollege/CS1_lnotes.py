@@ -70,7 +70,3 @@ print("%02d:%02d:%02d" % (h,m,s))
 # WHILE
 # when using "continue", it jumps to the next iteration of the while, no matter what follows after the "continue"
 # it skips the next lines and star from the beginning of the next iteration
-
-
-
-t
