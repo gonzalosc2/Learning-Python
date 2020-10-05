@@ -9,7 +9,8 @@
 #       Input: an local list of words obtained from the first function
 #       Output: a list showing lists of unique words and the number of times
 #               these appeared in the input list
-#   Third functions: orchastrates the code
+#   Third function: calls first and second function as required by the user,
+#                   otherwise the user has the option to exit the program
 
 ############################################################
 ### FUNCTION DEFINITION
