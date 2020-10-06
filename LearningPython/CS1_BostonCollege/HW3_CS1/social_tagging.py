@@ -2,15 +2,16 @@
 # assigment: Homework #3
 # name: Social Tagging
 # description: main .py file with three functions
-#   First function:
+#   First function (labeled)
 #       Input: a message
 #       Output: a list of hashtags present on that message
-#   Second function:
+#   Second function (tabulated):
 #       Input: an local list of words obtained from the first function
 #       Output: a list showing lists of unique words and the number of times
 #               these appeared in the input list
-#   Third function: calls first and second function as required by the user,
-#                   otherwise the user has the option to exit the program
+#   Third function (main): calls first and second function as required by
+#                          the user, otherwise the user has the option to
+#                          exit the program
 
 ############################################################
 ### FUNCTION DEFINITION
@@ -75,9 +76,9 @@ def main():
                 print('\n')
                 print(tabulated(hashtag_words))
         elif answer.lower() in quit_values:
-            quit()
-            break
+            return quit()
+
         else:
-            print('\nThe value enter is not valid. Please try again.')
+            print('\nThe value entered is not valid. Please try again.')
 
 main()
