@@ -76,7 +76,7 @@ def nickname(answer):
             return print(''.join(name))
 
         except ValueError:
-            print('\nThe value entered is not valid.' +
+            print('The value entered is not valid.' +
                 ' Please, type in a valid sentence (numbers are not allowed)')
             break
 
@@ -88,7 +88,8 @@ def main():
     exit_true = ['q','quit']
 
     while True:
-        answer = input('\nEnter a sentence or quit: ')
+        answer = input('\nEnter a sentence or quit. If you want to exit' +
+            ' type "quit" (Q): ')
 
         if answer.lower() in exit_true:
             return quit()

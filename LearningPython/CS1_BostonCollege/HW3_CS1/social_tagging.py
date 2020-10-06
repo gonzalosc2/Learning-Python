@@ -22,17 +22,21 @@ def labeled(saved_words):
     message = input('\nPlease type in the message you want to publish.' +
         'If you want to highlight a particular topic, please use hashtags (#): ')
     list_of_words = message.split()
-    is_avoid = [',','.',';',':']
+    is_avoid = (',','.',';',':')
 
     for word in list_of_words:
+
     # Considers only words starting with hashtags (#)
         if word[0] == "#":
+            new_word = []
         # Checks if there is any symbol that should be avoided and gets rid of it
-            if word[len(word)-1] in is_avoid:
-                new_word = word[1:len(word)-1]
-            else:
-                new_word = word[1:len(word)]
-            saved_words.append(new_word)
+            for letter in word[1:]:
+                if letter in is_avoid:
+                    break
+                else:
+                    new_word.append(letter)
+
+            saved_words.append(''.join(new_word))
         else:
             pass
 
