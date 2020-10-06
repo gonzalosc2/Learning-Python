@@ -77,7 +77,6 @@ def main():
                 print(tabulated(hashtag_words))
         elif answer.lower() in quit_values:
             return quit()
-
         else:
             print('\nThe value entered is not valid. Please try again.')
 
