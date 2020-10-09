@@ -70,3 +70,33 @@ print("%02d:%02d:%02d" % (h,m,s))
 # WHILE
 # when using "continue", it jumps to the next iteration of the while, no matter what follows after the "continue"
 # it skips the next lines and star from the beginning of the next iteration
+
+# LISTS
+# Shallow copy: is a pointer or a reference, so if I change the value of the reference
+# it will change where it is used
+
+my_list = [2,3,4,5,6,7]
+print(my_list)
+
+l2 = my_list  #shallow copy
+print(l2)
+
+l2[0] == "anna"
+print(my_list, l2)
+
+# Deep copy: creates a new space in memory for a list already existing, so it will
+# not have a shallow copy's problem
+
+    # one way
+my_list_copy = [] #creates a new space in memory
+for item in my_list:
+    my_list_copy.append(item)
+
+print(my_list, my_list_copy)
+my_list_copy[2] = "gonzalo"
+print(my_list, my_list_copy)
+
+    # another way
+l3 = my_list.copy()
+l3[1] = 'the best'
+print(l3, my_list)
