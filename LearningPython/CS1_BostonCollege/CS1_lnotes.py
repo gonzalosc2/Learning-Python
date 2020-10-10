@@ -5,7 +5,7 @@
 # other: N/A
 ####################################
 
-# Modules or libraries
+# MODULES OR LIBRARIES
 import random
 
 # Interger division
@@ -100,3 +100,60 @@ print(my_list, my_list_copy)
 l3 = my_list.copy()
 l3[1] = 'the best'
 print(l3, my_list)
+
+# STRINGS
+# split(","), separates by the comma
+# split(), separates by space
+# string.strip(), gets rid of the specified character at the beginning or at the end.
+#   It only work on strings, it does not work if it is applied to a list.
+#   In that case a for should be used to go through each word.
+# string.replace(old,new), returns a copy of the original string with all the
+#   letters in lower case, it does not modify the original string
+# find(x), delivers the value of the index that the substring occupies equal to
+#   x within the string
+# find(x,start), gives the value of the index that occupies the substring equal
+#   to x within the string, looking from the start position onwards
+
+# deep copy - due to slicing/sub list
+my_list = [111,222,333,444,555]
+my_list_copy = my_list[:]  #slicing
+
+my_list_copy.remove(111)
+
+print('after remove')
+print(my_list)
+print(my_list_copy)
+
+# shallow copy - due to slicing/sub list
+my_list = [111,222,333,444,555]
+my_list_copy = my_list  # passing by reference
+
+my_list_copy.remove(111)
+
+print('after remove')
+print(my_list)
+print(my_list_copy)
+
+# slicing
+my_list = [111,222,333,444,555]
+#           0   1   2   3   4
+#          -5  -4  -3  -2  -1
+
+# example where to start we should count from the right and to end, we should
+# start from the left
+my_list[-2:4]
+my_list[0:1]  # last item is never included
+
+# GENERATORS
+#range(j): generates a list with values from 0 to j-1
+#range(i,j): generates a list with values from i to j-1
+#range(i,j,k): generates a list with values from i to j-1, and k is the step
+
+# There is a problem with range(j): it has to generate a list with j values, for
+# example if we are using it with a for, since Python has to know where are we as
+# well as how many elements rest to cycle through. If the list is huge, this
+# will be costly in terms of memory. Instead there is a solution provided by
+# the xrange() function, which allows us to create the elements at the time they
+# are used and thus saves memory.
+
+# FILES
