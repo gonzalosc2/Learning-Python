@@ -251,7 +251,8 @@ type(b)
 # FILES: CREATING A .TXT FILE
 
 pwd
-# cd '/Users/gsalazar/Documents/C_Codes/Python'
+#cd ..
+#cd /Users/gsalazar/Documents/C_Codes/Learning-Python/Udemy_PythonBootcamp
 
 %%writefile myfile.txt
 Hello this is a text file
