@@ -139,7 +139,7 @@ class Animal():
 # Inherited class or derived class
 class Dog(Animal):
 
-    # NOT NECESSARILY NEEDED IT IF WE ARE INHERITING IT.
+    # NOT NECESSARILY NEEDED IF WE ARE INHERITING IT.
     def __init__(self):
         Animal.__init__(self)
         print('Dog Created')
