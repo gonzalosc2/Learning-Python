@@ -3,6 +3,10 @@
 # name:
 # description: main .py file with three functions
 
+#recall: to set working directory
+#cd ..
+#cd Learning-Python/CS1_BostonCollege/HW4_CS1
+
 ### MODULES ###
 import random as rd
 
@@ -11,14 +15,17 @@ nucleotides = ('A','T','C','G')
 rest_sites = ('ACCGGT','GGCGCGCC','GGATCC','CCTGCAGG')
 
 ### FUNCTIONS DEFINITION ###
-
 def gen_DNA(size):
     "Generates DNA"
+    "   INPUT: the length of the sequence (interger)"
+    "   OUTPUT: a DNA sequence"
 
     return ''.join(rd.choices(nucleotides, k=size))
 
 def not_unique(DNA_barcodes):
     "Checks whether the DNA barcode is unique or not"
+    "   INPUT: a list of barcodes"
+    "   OUTPUT: a boolean"
 
     if DNA_barcodes[-1] in DNA_barcodes[:-1]:
         return True
@@ -28,6 +35,8 @@ def not_unique(DNA_barcodes):
 def not_GC_content(DNA_barcodes):
     "Checks whether the guanine-cytosine content of a DNA barcode is between"
     "40% and 60% (both extremes included) or not"
+    "   INPUT: a list of barcodes"
+    "   OUTPUT: a boolean"
 
     num,denom = 0,0
     i = 0
@@ -50,6 +59,8 @@ def not_GC_content(DNA_barcodes):
 
 def is_rest_enzyme(DNA_barcodes):
     "Checks whether there are three identical nucleotides in a row or not"
+    "   INPUT: a list of barcodes"
+    "   OUTPUT: a boolean"
 
     i = 0
     while i+2 < len(DNA_barcodes[-1]):
@@ -65,6 +76,8 @@ def is_rest_enzyme(DNA_barcodes):
 
 def is_rest_site(DNA_barcodes):
     "Checks whether there is a restricion site or not"
+    "   INPUT: a list of barcodes"
+    "   OUTPUT: a boolean"
 
     for site in rest_sites:
         if site in DNA_barcodes[-1]:
@@ -76,6 +89,8 @@ def is_rest_site(DNA_barcodes):
 
 def is_hamming_dist_less_3(DNA_barcodes):
     "Checks whether the Hamming distance is less than three or not"
+    "   INPUT: a list of barcodes"
+    "   OUTPUT: a boolean"
 
 #    distance = []
     for barcode in DNA_barcodes[:-1]:
@@ -103,6 +118,9 @@ def multi_DNA(size, sequences):
     "2. No three identical nucleotides in a row"
     "3. No restriction site is included"
     "4. Hamming distance greater than or equal to 3"
+    "   INPUT: the length of the sequence (interger) and the number of required"
+    "          sequences (interger)"
+    "   OUTPUT: a list of DNA sequences"
 
     i=1
     j=0  # self checking
@@ -125,6 +143,9 @@ def multi_DNA(size, sequences):
 
 def input_validation():
     "Checks that the size and number of sequences values are intergers."
+    "   INPUT: N/A"
+    "   OUTPUT: the length of the sequence (interger) and the number of required"
+    "           sequences (interger)"
 
     while True:
         try:
@@ -144,14 +165,32 @@ def input_validation():
 
     return size,sequences
 
-### INITIALIZING THE CODE! ###
+def barcode_print(DNA_barcodes,size,sequences):
+    "Generates the exact format that will be saved on a text file"
+    "   INPUT: a list of DNA sequences, its length (interger) and their"
+    "          specific size (integer)"
+    "   OUTPUT: a file with name 'barcodes (#length seqs of size #size)'"
+
+    name = 'barcodes (' + str(sequences) + 'seqs of size' + str(size) + ').txt'
+
+    with open(name, mode = 'w') as DNA_file:
+        for sequence in range(0, len(DNA_barcodes)):
+            DNA_file.write('barcode ' + str(sequence+1) + ': ' + DNA_barcodes[sequence] + '\n')
+
+### INITIALIZING THE CODE ###
 def main():
     "Runs the whole code"
+    "   INPUT: N/A"
+    "   OUTPUT: a file with a bunch of DNA sequences"
 
-    # Asking for size of DNA barcode and number of barcodes required
+    # Asks for size of DNA barcode and number of barcodes required
     size, sequences = input_validation()
 
-    # Creating a list of unique DNA barcodes which satysfy four criteria
-    return multi_DNA(size, sequences)
+    # Creates a list of unique DNA barcodes which satysfy four criteria
+    DNA_barcodes = multi_DNA(size, sequences)
 
+    # Transform the list into the required text format
+    barcode_print(DNA_barcodes,size,sequences)
+
+### RUNNING THE CODE! ###
 main()
