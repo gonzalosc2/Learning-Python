@@ -1,7 +1,12 @@
 # author: Gonzalo Salazar
 # assigment: Homework #4
-# name:
-# description: main .py file with three functions
+# name: DNA sequences generator
+# description: main .py file with a series of functions
+#              Under certain restrictions such as a GC content in 40-60%,
+#              unique sequence, no restricted enzymes, no restriction sites,
+#              and hamming distance >= 3, this code generates a file with a
+#              bunch of DNA sequences. The size of the sequence as well as the
+#              number of sequences can be changed by the user
 
 #recall: to set working directory
 #cd ..
