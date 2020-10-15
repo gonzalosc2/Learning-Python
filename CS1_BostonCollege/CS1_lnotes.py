@@ -155,5 +155,3 @@ my_list[0:1]  # last item is never included
 # will be costly in terms of memory. Instead there is a solution provided by
 # the xrange() function, which allows us to create the elements at the time they
 # are used and thus saves memory.
-
-# FILES
