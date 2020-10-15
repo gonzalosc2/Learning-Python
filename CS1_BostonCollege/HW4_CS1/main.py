@@ -157,7 +157,7 @@ def input_validation():
 
     while True:
         try:
-            sequences = int(input('How many sequences do you need?'))
+            sequences = int(input('How many DNA sequences do you need?'))
             break
 
         except ValueError:
