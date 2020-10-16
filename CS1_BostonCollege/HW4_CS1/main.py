@@ -180,7 +180,10 @@ def barcode_print(DNA_barcodes,size,sequences):
 
     with open(name, mode = 'w') as DNA_file:
         for sequence in range(0, len(DNA_barcodes)):
-            DNA_file.write('barcode ' + str(sequence+1) + ': ' + DNA_barcodes[sequence] + '\n')
+            if sequence == len(DNA_barcodes)-1:
+                DNA_file.write('barcode ' + str(sequence+1) + ': ' + DNA_barcodes[sequence])
+            else:
+                DNA_file.write('barcode ' + str(sequence+1) + ': ' + DNA_barcodes[sequence] + '\n')
 
 ### INITIALIZING THE CODE ###
 def main():
