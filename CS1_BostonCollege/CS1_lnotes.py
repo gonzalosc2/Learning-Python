@@ -116,7 +116,9 @@ print(l3, my_list)
 
 # deep copy - due to slicing/sub list
 my_list = [111,222,333,444,555]
-my_list_copy = my_list[:]  #slicing
+my_list_copy = my_list[:]  #slicing  #only works for a list with single elements
+                           #inside. For list of lists it will be a shallow copy.
+                           #In that case, we should use deepcopy from copy module
 
 my_list_copy.remove(111)
 
