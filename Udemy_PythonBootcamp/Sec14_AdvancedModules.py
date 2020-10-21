@@ -223,3 +223,127 @@ mylist
 
 random.uniform(a=0,b=100)
 random.gauss(mu=0,sigma=1)
+
+# PYTHON DEBUGGER
+# Allows to set a trace, which is essentially going to pause operations,  mid
+# script and then allow us to play with variables to understand what is going on
+
+x = [1,2,3]
+y = 2
+z = 3
+
+result = y + z
+result1 = x + z
+
+import pdb
+
+x = [1,2,3]
+y = 2
+z = 3
+
+resul_one = y + z
+
+pdb.set_trace()  # type "quit" or "q" in order to exit the debugger
+result_two = x + z
+
+# REGULAR EXPRESSIONS
+# Allows us to create specialized pattern strings and then search for matches
+# within text
+import re
+
+# Phone Number: (555)-555-5555
+r"(\d\d\d)-\d\d\d-\d\d\d\d"
+r"(\d{3)-\d{3}-\d{4}"  # does the same as above, but it uses quantifiers
+# r informs Python that this string should not be treated as a normal string.
+# Instead, it tells Python that there's actually identifiers within this string
+# Each identifier is a just a placeholder (a wild card) waiting for a matches
+# based on a particular data type.
+# identifiers:
+#   \d: looks for digits
+#   \w: looks for alphanumerics
+#   \s: looks for white space
+#   \D: looks for non digits
+#   \W: looks for non-alphanumerics
+#   \S: looks for non-whitespace
+
+# quantifiers:
+#     +: occurss one or more times
+#   {x}: occurs exactly x times
+#   {x,y}: occurs x to y times
+#   {x,}: occurs x or more times
+#     *: occurs zero or more times
+#     ?: occurs once or none
+
+text = "The agent's phone number is 408-555-1234. Call soon!"
+'phone' in text
+
+# nothing is found
+pattern = 'NOT IN TEXT'
+re.search(pattern,text)
+
+# when something is found
+pattern = 'phone'
+re.search(pattern,text)
+match = re.search(pattern,text)
+match.span()
+match.end()
+
+# when there are more than one match
+text = 'my phone once, my phone twice'
+match = re.search('phone',text)
+match.span()  # it only takes care of the first match
+matches = re.findall('phone',text)  # it returns a list with matches
+
+# to get actual match operator (each one), we should use finditer()
+for match in re.finditer('phone',text):
+    print(match)  # basically search()
+    print(match.span())
+    print(match.group())  # basically findall()
+
+phone = re.search(r'\d{3}-\d{3}-\d{4}',text)  # important to add r before ' '
+phone
+phone.group()
+
+# compile() allows us to group/compile together different regular expression
+# pattern codes, which can then be broken down
+# (e.g., if we want to get the area code)
+phone_pattern = re.compile(r'(\d{3})-(\d{3})-(\d{4})')
+results = re.search(phone_pattern,text)  # import
+results.group()   # groups together all patterns in the compile function
+results.group(1)            # note index starts at 1
+results.group(2)  # groups together all patterns in the second group
+results.group(3)
+
+# searching for more than one element
+re.search(r'cat|dog', 'The cat is here')   # | serves as OR operator
+re.findall(r'at', 'The cat is hat sat there')   # without wildcard
+re.findall(r'.at', 'The cat is hat sat there')   # . serves as a wildcard. we can
+                                                 # use as much as we want
+re.findall(r'^\d','1 is ...')   # ^ serves to find an identifier at the beginning
+                                # of the whole text (note in the middle)
+re.findall(r'\d$','The number is 2')   # ^ serves to find an identifier at the
+                                       # end of the whole text
+
+# excluding patterns (useful to get rid of punctuation)
+phrase = 'there are 3 numbers 34 inside 5 this sentence'
+pattern = r'[^\d]+'
+re.findall(pattern,phrase)
+
+test_phrase = 'This is a string! But it has punctuation. How can we remove it?'
+clean = re.findall(r'[^!.? ]+',test_phrase)  # the space removes the spaces
+' '.join(clean).lower()
+
+# including patters
+text = 'Only find the hypen-words in this sentence. But you do not know how long-ish they are'
+pattern = r'[\w]+-[\w]+'   # w/o brace notation also works, but difficult to read
+                           # as well as allows us to group things together
+re.findall(pattern,text
+
+# combining or with other pieces of text
+text = 'Hello, would you like some catfish?'
+texttwo = 'Hello, would you like to take a catnap?'
+textthree = 'Hello, have you seen this caterpillar?'
+
+re.search(r'cat(fish|nap|claw)',text)
+re.search(r'cat(fish|nap|claw)',texttwo)
+re.search(r'cat(fish|nap|claw)',textthree)
