@@ -347,3 +347,71 @@ textthree = 'Hello, have you seen this caterpillar?'
 re.search(r'cat(fish|nap|claw)',text)
 re.search(r'cat(fish|nap|claw)',texttwo)
 re.search(r'cat(fish|nap|claw)',textthree)
+
+# TIMING THE CODE
+# Allows to distinguish which lines of code are more efficient than others
+import time  # simple, but not designed for that purpose, won't catch slight diffs
+
+def func_two(n):
+    return list(map(str,range(n)))
+
+## Current time before
+start_time = time.time()
+
+## Run code
+result = func_two(1000000)
+
+## Current tiem after running code
+end_time = time.time()
+
+## elapsed time
+elapsed_time = end_time - start_time
+print(elapsed_time)
+
+import timeit  # designed for this purpose
+
+stmt = '''
+func_two(100)
+'''
+setup = '''
+def func_two(n):
+    return list(map(str,range(n)))
+'''
+
+timeit.timeit(stmt,setup,number = 100000)
+
+# if we do not want to setup an environment, then use %%timeit, since it uses
+# previously defined functions
+%%timeit   #only works in a Jupyter notebook (or here: Atom!)
+func_two(100)
+
+# ZIPPING/UNZIPPING FILES
+import os
+#os.getcwd()
+os.chdir('/Users/gsalazar/Documents/C_Codes/Learning-Python/Udemy_PythonBootcamp')
+f = open('fileone.txt','w+')
+f.write('one file')
+f.close()
+f = open('filetwo.txt','w+')
+f.write('one file')
+f.close()
+
+import zipfile
+# does not work for compressing entire folders at once
+
+# create the zip file first!
+comp_file = zipfile.ZipFile('comp_file.zip','w')
+comp_file.write('fileone.txt',compress_type = zipfile.ZIP_DEFLATED)
+comp_file.write('filetwo.txt',compress_type = zipfile.ZIP_DEFLATED)
+comp_file.close()
+
+# extracting files from a zip file
+#zip_obj = zipfile.extract('NAME.ext')  # it only extracts on
+zip_obj.extractall('extracted_content')
+
+import shutil
+dir_to_zip = '/Users/gsalazar/Documents/C_Codes/Learning-Python/Udemy_PythonBootcamp/extracted_content'
+output_filename = 'example'
+shutil.make_archive(output_filename,'zip',dir_to_zip)
+
+shutil.unpack_archive('example.zip','final_unzip','zip')
