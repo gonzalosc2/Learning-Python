@@ -89,3 +89,19 @@ example = products[0]
 # another way (checking for the presence of a class)
 example.select('.star-rating.Three')  # if there is a space in a class we should add a dot
 example.select('.star-rating.Two')  # nothing
+example.select('a')[1]['title']
+
+two_star_titles = []
+
+for n in range(1,51):
+
+    scrape_url = base_url.format(n)
+    req = requests.get(base_url.format(1))
+    soup = bs4.BeautifulSoup(req.text,'lxml')
+    books = soup.select(".product_pod")
+
+    for book in books:
+        if len(book.select('.star-rating.Two')) != 0:
+            two_star_titles.append(book.select('a')[1]['title'])
+
+two_star_titles
