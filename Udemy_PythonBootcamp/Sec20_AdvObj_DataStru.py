@@ -136,3 +136,8 @@ d = {'k1':1,'k2':2}
 
 # creating a dictionary with dict comprenhension
 {x:x**2 for x in range(10)}
+
+############
+# LISTS
+
+# we have seen all of them previously
