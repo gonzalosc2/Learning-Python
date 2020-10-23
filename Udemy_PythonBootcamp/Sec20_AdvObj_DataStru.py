@@ -6,6 +6,7 @@
 # other: N/A
 ####################################
 
+############
 # NUMBERS
 ## Hexadecimal: transforms a number into Hexadecimal
 hex(12)
@@ -32,6 +33,7 @@ abs(2)
 round(3.9)
 round(3.141592,2)
 
+############
 # STRINGS
 s = 'hello world'
 s.capitalize()   # capitalizes only the first word
@@ -69,6 +71,7 @@ s.partition('e') # splits the word at the first instance of this character and
                  # includes it. The output is a tuple. If the character is not
                  # found, then the output is (string,'','')
 
+############
 # SETS
 s = set()
 s.add(1)
@@ -85,21 +88,51 @@ s = {1,2,3}
 sc = s.copy()  # hard copy
 sc.add(4)
 
-## difference
-sc.difference(s)  # returns the value that's different between two sets
-                  # should be calculated as follows BiggerSet - SmallerSet
+## difference: returns the value that's different between two sets.
+##             Should be calculated as follows BiggerSet - SmallerSet
+sc.difference(s)
+
 s1 = {1,2,3}
 s2 = {1,4,5}
 s1.difference_update(s2)  # compares two lists and returns the none duplicated
                           # values from the original list
 
-## intersection
+## intersection: returns common elements from two lists
 s1 = {1,2,3}
 s2 = {1,2,5}
-s1.intersection(s2)  # returns common elements from two lists
+s1.intersection(s2)
 s1
 s1.intersection_update(s2)  # changes the value of the original string with
                             # common elements from two lists (origina & comparison)
 s1
 
-## disjoint
+## disjoint: evaluates whether two sets are intersected (FALSE) or not (TRUE)
+s1 = {1,2}
+s2 = {1,2,4}
+s3 = {5}
+s1.isdisjoint(s2)
+s1.isdisjoint(s3)
+
+## sub- and supersets: returns a boolean as disjoint
+s1.issubset(s2)
+s2.issuperset(s1)
+
+## symmetric difference: returns the elements that are exactly in one of the sets.
+##                       it is the opposite of the intersection
+s2.symmetric_difference(s1)
+s1.symmetric_difference(s3)
+s1.symmetric_difference_update(s3)
+s1
+
+## union: returns the elements in both sets
+s1 = {1,2}
+s1.union(s2)
+s1.update(s2)
+s1
+
+############
+# DICTIONARIES
+d = {'k1':1,'k2':2}
+
+# creating a dictionary with dict comprenhension
+{x:x**2 for x in range(10)}
