@@ -2,7 +2,7 @@
 # author: Gonzalo Salazar
 # course: 2020 Complete Python Bootcamps: From Zero to Hero in Python
 # purpose: lecture notes
-# description: Section 17 - PDFs and CSV files
+# description: Section 18 - Emails
 # other: N/A
 ####################################
 
