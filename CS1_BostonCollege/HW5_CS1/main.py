@@ -10,6 +10,9 @@
 #cd ..
 #cd Learning-Python/CS1_BostonCollege/HW5_CS1
 
+### LIBRARIES ###
+import pandas
+
 ### FUNCTIONS DEFINITION ###
 def is_file(filename):
     "Checks if a file exists or not"
@@ -135,6 +138,31 @@ def data_merging(db):
             if my_list[0] in range(president[2],president[3]+1):
                 my_list.extend(president[:2])
 
+def bysort_empl(db):
+    " ########"
+    "   INPUT: N/A"
+    "   OUTPUT: "
+
+    return db[0]
+
+def bysort_pres(list):
+    " ########"
+    "   INPUT: N/A"
+    "   OUTPUT: "
+
+    return list[-2]
+
+def data_sorting(db):
+    " ########"
+    "   INPUT: N/A"
+    "   OUTPUT: "
+
+    if db in (gov,priv):
+        db.sort(key = bysort_empl)
+
+    elif db in pres:
+        db.sort(key = bysort_pres)
+
 def empl_per_month(party,source):
     " ########"
     "   INPUT: N/A"
@@ -142,33 +170,46 @@ def empl_per_month(party,source):
 
     total_exp_list = []
     for my_list in source:
-        sum_exp = 0
         if my_list[14].upper() in party:
             total_exp_list.append(sum(my_list[1:13])/len(my_list[1:13]))
 
     return sum(total_exp_list)/len(total_exp_list)
 
-def empl_first_last_diff(president,source):
+def empl_first_last_diff(source):
     " ########"
     "   INPUT: N/A"
     "   OUTPUT: "
 
-    total_exp_list = []
-    #for my_list in source:
-    for my_list in gov:
-        sum_exp = 0
-        #if my_list[14].upper() in president:
+    empl_by_pres = []
+    for my_list in source:
+        for pres_period in pres:
+            # First month for each president
+            if pres_period[2] == my_list[0]:
+                president_info = [my_list[-2],my_list[1]]
 
+            # Last month for each president
+            elif pres_period[3] == my_list[0]:
+                #lm_empl.append([my_list[-2],my_list[-3]])
+                president_info.append(my_list[-3])
 
+        if len(president_info) == 3:
+            empl_by_pres.append(president_info)
 
-        """"  HERE I AM """"
-        if my_list[13].upper() in 'DEMOCRAT':
-            #total_exp_list.append(my_list[0])
-            total_exp_list.append(sum(my_list[1:13])/len(my_list[1:13]))
+    for my_list_pres in empl_by_pres:
+        diff = my_list_pres[2]-my_list_pres[1]
+        perc = diff / my_list_pres[1]
+        my_list_pres.extend(['{:,}'.format(diff), '{:6.2%}'.format(perc)])
 
-    return sum(total_exp_list)/len(total_exp_list)
+    return empl_by_pres
 
+def data_formating(db):
+    " ########"
+    "   INPUT: N/A"
+    "   OUTPUT: "
 
+    for i in (1,2):
+        for item in db:
+            item[i]='{:,}'.format(item[i])
 
 def data_wrangling():
     " ########"
@@ -177,25 +218,65 @@ def data_wrangling():
 
     for db in (priv,gov):
         data_merging(db)
-
-    global priv
-    priv = collecting_data(answer)
+        data_sorting(db)
 
     # Average monthly employment for each political party by source
-    source_empl_per_month_by_party = []
-    for source in (gov,priv):
-        for party in ('DEMOCRAT','REPUBLICAN'):
-            source_empl_per_month_by_party.append(empl_per_month(party,source))
+    # for source in (gov,priv):
+    #     for party in ('DEMOCRAT','REPUBLICAN'):
+    #         source_empl_per_month_by_party.append(empl_per_month(party,source))
 
-    #
+    # For government summary
+    for party in ('DEMOCRAT','REPUBLICAN'):
+        gov_empl_per_month_by_party.append('{:,}'.format(int(empl_per_month(party,gov))))
 
+    # For private summary
+    for party in ('DEMOCRAT','REPUBLICAN'):
+        priv_empl_per_month_by_party.append('{:,}'.format(int(empl_per_month(party,priv))))
 
+    # Change in employment from the first and last month for each president
+    # For government summary
+    gov_empl_per_president.extend(empl_first_last_diff(gov))
+    data_formating(gov_empl_per_president)
+
+    # For private summary
+    priv_empl_per_president.extend(empl_first_last_diff(priv))
+    data_formating(priv_empl_per_president)
+
+def data_display():
+    " "
+    "   INPUT: N/A"
+    "   OUTPUT: "
+
+    side_party = ['Democrat','Republican']
+    header_usd = ['(in millions)']
+    side_num = list(range(1,len(gov_empl_per_president)+1))
+    headers_pres = ['President','First Month','Last Month','Diff','% Diff']
+
+    print('-----------------------------------------------')
+    print('Governent employment average per month')
+    print(pandas.DataFrame(gov_empl_per_month_by_party,side_party,header_usd))
+    print('\n')
+
+    print('-----------------------------------------------')
+    print('Private employment average per month')
+    print(pandas.DataFrame(priv_empl_per_month_by_party,side_party,header_usd))
+    print('\n')
+
+    print('-----------------------------------------------')
+    print('Government employment by president (in millions)')
+    print(pandas.DataFrame(gov_empl_per_president,side_num,headers_pres))
+    print('\n')
+
+    print('-----------------------------------------------')
+    print('Private employment by president (in millions)')
+    print(pandas.DataFrame(priv_empl_per_president,side_num,headers_pres))
+    print('\n')
 
 ### INITIALIZING THE CODE ###
 def main():
     "Runs the whole code"
     "   INPUT: N/A"
-    "   OUTPUT: a file with a bunch of DNA sequences"
+    "   OUTPUT: a bunch of figures about employment in the U.S."
 
     ### GLOBAL LISTS ###
     global gov
@@ -205,7 +286,20 @@ def main():
     priv = []
     pres = []
 
+    global gov_empl_per_month_by_party
+    global priv_empl_per_month_by_party
+    global gov_empl_per_president
+    global priv_empl_per_president
+    gov_empl_per_month_by_party = []
+    priv_empl_per_month_by_party = []
+    gov_empl_per_president = []
+    priv_empl_per_president = []
+
     data_prompting()
+
+    data_wrangling()
+
+    data_display()
 
 ### RUNNING THE CODE! ###
 main()
