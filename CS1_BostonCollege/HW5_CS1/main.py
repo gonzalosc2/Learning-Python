@@ -1,10 +1,15 @@
 # author: Gonzalo Salazar
 # assigment: Homework #5
-# name:
-# description:
-#
-#
-#
+# name: employment analysis in the U.S.
+# description: main .py file with a series of functions
+#              This code generates a set of figures summarizing the employment
+#              in the U.S. This is done taking into account political parties and
+#              sector (government or private). Finally, some figures per president
+#              are shown as well. The user only needs to provide the name of three
+#              files associated with:
+#                   (i) government employment data,
+#                  (ii) private employment data, and
+#                 (iii) presidential data.
 
 #recall: to set working directory
 #cd ..
@@ -16,7 +21,7 @@ import pandas
 ### FUNCTIONS DEFINITION ###
 def is_file(filename):
     "Checks if a file exists or not"
-    "   INPUT: name of a file"
+    "   INPUT: string(name of a file)"
     "   OUTPUT: boolean"
 
     try:
@@ -26,8 +31,8 @@ def is_file(filename):
         return False
 
 def empl_data_processing(filename):
-    "############"
-    "   INPUT: name of a file"
+    "Transforms a txt file into a useful list"
+    "   INPUT: string(name of a file)"
     "   OUTPUT: list of lists with employment data by year"
 
     with open(filename, 'r') as f:
@@ -45,9 +50,10 @@ def empl_data_processing(filename):
     return data
 
 def presi_data_processing(filename):
-    "############"
-    "   INPUT: name of a file"
-    "   OUTPUT: list of lists with employment data by year"
+    "Transforms a txt file into a useful list"
+    "   INPUT: string (name of a file)"
+    "   OUTPUT: list of lists with presidents data (period and party)"
+
     filename = 'presidents.txt'
 
     with open(filename, 'r') as f:
@@ -57,13 +63,13 @@ def presi_data_processing(filename):
         for item in f:
             presi_data = item.strip().split(', ')
 
-            # for jr
+            # Solves the issue with compound names of presidents, such as James Earl Carter, Jr
             while len(presi_data) > 3:
                 pres_data = [presi_data[0] + ', ' + presi_data[1]]
                 pres_data.extend(presi_data[2:])
                 presi_data = pres_data
 
-            # for min and max period
+            # Separates the period by which each president was in charge in two diff values
             pres_data = [presi_data[0]]
             pres_data.extend([presi_data[2],int(presi_data[1][:4]),int(presi_data[1][-4:])-1])
 
@@ -73,10 +79,11 @@ def presi_data_processing(filename):
 
 def collecting_data(answer):
     "Opens a txt file with data and processes it"
-    "   INPUT: N/A"
-    "   OUTPUT: list of lists with useful information"
+    "   INPUT: option stated by the user: (G)overnment, (P)rivate or (Pr)esident"
+    "   OUTPUT: list of lists"
 
     while True:
+        # Asks for the filename
         filename = input('Please enter the name of the file containing the relevant data. \
                     \nThe file should be on a comma-separated basis. Please provide the name of \
                     the file with its extension as well, e.g., name_of_the_file.txt')
@@ -93,9 +100,11 @@ def collecting_data(answer):
         return presi_data_processing(filename)
 
 def data_source():
-    " ########"
+    "Asks the user for the type of information she is planning to work with,"
+    "to then call other functions in order to collect and transform the data"
     "   INPUT: N/A"
-    "   OUTPUT: "
+    "   OUTPUT: a data frame with specific data provided by the user or "
+    "           an error if the option provided is not valid"
 
     while True:
         try:
@@ -121,17 +130,17 @@ def data_source():
             print('The value provided is invalid, please answer P, G, or Pr.')
 
 def data_prompting():
-    " ########"
+    "Keeps asking for data files if these have not been loaded yet"
     "   INPUT: N/A"
-    "   OUTPUT: "
+    "   OUTPUT: N/A"
 
     while len(priv) == 0 or len(gov) == 0 or len(pres) == 0:
         data_source()
 
 def data_merging(db):
-    " ########"
-    "   INPUT: N/A"
-    "   OUTPUT: "
+    "Merges a list with presidential information"
+    "   INPUT: list (database)"
+    "   OUTPUT: updated list (modification of the original database)"
 
     for my_list in db:
         for president in pres:
@@ -139,23 +148,24 @@ def data_merging(db):
                 my_list.extend(president[:2])
 
 def bysort_empl(db):
-    " ########"
-    "   INPUT: N/A"
-    "   OUTPUT: "
+    "Selects the column by which we want to sort, in this case by year"
+    "   INPUT: list (database)"
+    "   OUTPUT: value in specific column"
 
     return db[0]
 
-def bysort_pres(list):
-    " ########"
-    "   INPUT: N/A"
-    "   OUTPUT: "
+def bysort_pres(db):
+    "Selects the column by which we want to sort, in this case by the first year"
+    "a president was in charge"
+    "   INPUT: list (database)"
+    "   OUTPUT: value in specific column"
 
-    return list[-2]
+    return db[-2]
 
 def data_sorting(db):
-    " ########"
-    "   INPUT: N/A"
-    "   OUTPUT: "
+    "Sorts a list depending on criteria"
+    "   INPUT: list (database)"
+    "   OUTPUT: sorted list"
 
     if db in (gov,priv):
         db.sort(key = bysort_empl)
@@ -164,9 +174,9 @@ def data_sorting(db):
         db.sort(key = bysort_pres)
 
 def empl_per_month(party,source):
-    " ########"
-    "   INPUT: N/A"
-    "   OUTPUT: "
+    "Calculates the employment per month of a particular party given its source"
+    "   INPUT: string [party] and list [source: government or private)]"
+    "   OUTPUT: float"
 
     total_exp_list = []
     for my_list in source:
@@ -176,9 +186,10 @@ def empl_per_month(party,source):
     return sum(total_exp_list)/len(total_exp_list)
 
 def empl_first_last_diff(source):
-    " ########"
-    "   INPUT: N/A"
-    "   OUTPUT: "
+    "Calculates the difference in employment between the first and last month"
+    "of a president in charge"
+    "   INPUT: list [source: government or private)]"
+    "   OUTPUT: list (with information about each president and the diff in employment)"
 
     empl_by_pres = []
     for my_list in source:
@@ -195,6 +206,7 @@ def empl_first_last_diff(source):
         if len(president_info) == 3:
             empl_by_pres.append(president_info)
 
+    # Adds the absolute difference and percentage difference for each president
     for my_list_pres in empl_by_pres:
         diff = my_list_pres[2]-my_list_pres[1]
         perc = diff / my_list_pres[1]
@@ -203,21 +215,25 @@ def empl_first_last_diff(source):
     return empl_by_pres
 
 def data_formating(db):
-    " ########"
-    "   INPUT: N/A"
-    "   OUTPUT: "
+    "Adds commas to units in thousands"
+    "   INPUT: list"
+    "   OUTPUT: modified list (with commas)"
 
     for i in (1,2):
         for item in db:
             item[i]='{:,}'.format(item[i])
 
 def data_wrangling():
-    " ########"
+    "Encompasses the data processing step"
     "   INPUT: N/A"
-    "   OUTPUT: "
+    "   OUTPUT: lists with information about employment per month by party and"
+    "           difference between first and last month employment per president"
 
     for db in (priv,gov):
+        # Merging employment data with presidential information
         data_merging(db)
+
+        # Sorting by year each database
         data_sorting(db)
 
     # Average monthly employment for each political party by source
@@ -243,9 +259,9 @@ def data_wrangling():
     data_formating(priv_empl_per_president)
 
 def data_display():
-    " "
+    "Displays data related to employment in the U.S. by different classifications"
     "   INPUT: N/A"
-    "   OUTPUT: "
+    "   OUTPUT: prints of different data frames"
 
     side_party = ['Democrat','Republican']
     header_usd = ['(in millions)']
@@ -295,10 +311,13 @@ def main():
     gov_empl_per_president = []
     priv_empl_per_president = []
 
+    # Asking for data files
     data_prompting()
 
+    # Filtering, rearranging and cleansing databases
     data_wrangling()
 
+    # Displaying insights obtained from databases
     data_display()
 
 ### RUNNING THE CODE! ###
