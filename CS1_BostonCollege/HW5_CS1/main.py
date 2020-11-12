@@ -25,7 +25,7 @@ def is_file(filename):
     "   OUTPUT: boolean"
 
     try:
-        with open(filename, 'r') as f:
+        with open(filename, 'r'):
             return True
     except IOError:
         return False
@@ -86,9 +86,9 @@ def collecting_data(answer):
         # Asks for the filename
         filename = input('Please enter the name of the file containing the relevant data. \
                     \nThe file should be on a comma-separated basis. Please provide the name of \
-                    the file with its extension as well, e.g., name_of_the_file.txt')
+                    the file with its extension as well, e.g., name_of_the_file.txt: ')
         if is_file(filename) == False:
-            print('Sorry, but there is no file named ' + filename + '. Please provide the correct name.')
+            print('\nSorry, but there is no file named ' + filename + '. Please provide the correct name.')
             continue
         else:
             break
@@ -110,7 +110,7 @@ def data_source():
         try:
             answer = input('Are you going to load information related to (P)rivate or \
                        (G)overnment employment, or related to (Pr)esidents elected in \
-                       the U.S.? Please answer P, G, or Pr.')
+                       the U.S.? Please answer P, G, or Pr: ')
             if answer.upper() in ('G','GOV','GOVERNMENT'):
                 global gov
                 gov = collecting_data(answer)
@@ -127,7 +127,7 @@ def data_source():
                 raise ValueError('Invalid value.')
 
         except ValueError:
-            print('The value provided is invalid, please answer P, G, or Pr.')
+            print('\nThe value provided is invalid, please answer P, G, or Pr.')
 
 def data_prompting():
     "Keeps asking for data files if these have not been loaded yet"
