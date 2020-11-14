@@ -7,7 +7,7 @@
 
 ### FUNCTION DEFINITION ###
 def missing_digits(x):
-    "Calculates the number of missing digits between the first and last digit
+    "Calculates the number of missing digits between the first and last digit"
     "from the input value"
     "   INPUT: interger"
     "   OUTPUT: interger"
