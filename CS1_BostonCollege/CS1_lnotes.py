@@ -157,3 +157,114 @@ my_list[0:1]  # last item is never included
 # will be costly in terms of memory. Instead there is a solution provided by
 # the xrange() function, which allows us to create the elements at the time they
 # are used and thus saves memory.
+
+# NUMPY (basically MATLAB in Python)
+from numpy import *
+
+## ARRAYS
+# meant to manipulate vectors of data (numbers)
+my_list = [323.42,643.43,656.4,47.546]
+my_array = array(my_list)
+print(my_list)
+print(my_array)
+print(3 * my_array + my_array ** 2)
+my_array[3]
+
+y = list(range(1,10))
+y2 = arange(1,10)
+print(y2)
+a = zeros(4)
+b = ones(10)
+print(a, b)
+linspace(1,10,10)
+
+## SUBARRAYS (array slicing)
+# We also have the issue of shallow copies here. To solve that we use copy()
+a = matrix([[1,2,3],[4,5,6],[7,8,9]])
+d = copy(a[2:,2:]) # deep copy
+print("d: ", d)
+
+c = copy(a[2:,2:])
+c[-1] = 999
+print("c: ", c)
+print("a: ", a)
+
+## MATRICES
+a = zeros((4,3))
+print("a: ", a)
+my_matrix =  matrix([[1,2,3],[4,5,6],[7,8,9]])
+print(my_matrix*2)
+print(my_matrix+2)
+size(my_matrix)  # number of values inside the matrix m times n
+my_matrix.shape  # size of the matrix (m x n)
+my_matrix.shape[0] # number of rows
+my_matrix.shape[1] # number of columns
+identity = eye(4)
+print(identity)
+my_diag = diag([1,2,3,4,5])
+print(my_diag)
+my_bool_mat = matrix([[True,True,False],[False, True, True]])
+print(my_bool_mat)
+
+## SYSTEM OF EQUATIONS
+# e.g., solving the following system is easy (Ax=b)
+# x -2y = -2
+# 3x-2y =  2
+
+print('x = ')
+A = matrix([[1,-2],[3,-2]])
+b = matrix([[-2],[2]])
+x = linalg.solve(A,b)
+print(x)
+
+#transposing a matrix
+print("x : ", x)
+print("x transposed: ",x.T)
+
+# MATPLOTLIB (2D graph library)
+import matplotlib.pyplot as plt
+import numpy as np
+
+## Step 1 - Creating a figure
+plt.figure()
+
+## Step 2 - Loading data and creating the plot
+x = np.array([4,6,3,10,7])
+plt.plot(x)
+
+## Step 2 - Showing the graph (make sure I run all the steps at the same time)
+plt.show()
+
+# another figure
+y = np.array(np.arange(len(x)))
+plt.figure()
+plt.plot(x,y)
+plt.title('My Graph')
+plt.xlabel('x-axis')
+plt.ylabel('y-axis')
+plt.show()
+
+# another figure (smooth cosine)
+x = np.linspace(0,10,1000)
+y = np.cos(x)
+plt.figure()
+plt.plot(x,y)
+plt.title('My Cosine')
+plt.xlabel('x-axis')
+plt.ylabel('y-axis')
+plt.show()
+
+# plt.clf() clear the windo
+# plt.subplots()  graphs inside a graph
+# plt.axis()
+# plt.ylim() sets limits to y-axis
+
+## bar graphs
+plt.figure()
+x = [1,2,3,4,5]
+y = [4,5,10,15,5]
+plt.bar(x,y)
+plt.title('My bars')
+plt.xlabel('x-axis')
+plt.ylabel('y-axis')
+plt.show()
