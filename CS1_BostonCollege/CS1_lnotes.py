@@ -286,3 +286,19 @@ plt.plot(x,np.cos(x),label = 'graph2')
 
 plt.legend()
 plt.show()
+
+## subfigures
+nrows = 2
+ncols = 1
+plt.subplot(nrows,ncols,1)  # 1 is the index
+plt.plot((np.array([4,6,3,10,7])))
+plt.subplot(nrows,ncols,2)  # 2 is the index
+plt.plot((np.random.uniform(10,15,20)))
+plt.show()
+
+## pie chart
+a = np.random.uniform(1,10,7)
+L = ['b1','b2','b3','b4','b5','b6','b7']
+plt.pie(a, labels = L)
+plt.title('A pie chart example')
+plt.show()
