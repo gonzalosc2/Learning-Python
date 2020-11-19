@@ -268,3 +268,21 @@ plt.title('My bars')
 plt.xlabel('x-axis')
 plt.ylabel('y-axis')
 plt.show()
+
+## histograms
+plt.figure()
+x = [1,2,3,4,5,5,4,5,4,3,1,4]
+plt.hist(x)
+plt.title('My histogram')
+plt.xlabel('x-axis')
+plt.ylabel('frequencies')
+plt.show()
+
+## two lines in the same graph
+plt.figure()
+x = np.arange(-2*np.pi,2*np.pi,0.1)
+plt.plot(x,np.sin(x),label = 'graph1')
+plt.plot(x,np.cos(x),label = 'graph2')
+
+plt.legend()
+plt.show()
