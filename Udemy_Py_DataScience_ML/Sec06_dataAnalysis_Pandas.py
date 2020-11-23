@@ -257,6 +257,7 @@ df = pd.DataFrame({'col1':[1,2,3,4], \
                    'col3':['abc','def','ghi','xyz']})
 
 df.head()  # displays the first n = 5 (by default) number of rows
+df.info()  # shows haow many entries are and their data type
 df['col2'].unique()  # shows all unique values in a specific array
 len(df['col2'].unique())  # displays the number of unique elements
 df['col2'].nunique()  # does the same as the previous command
