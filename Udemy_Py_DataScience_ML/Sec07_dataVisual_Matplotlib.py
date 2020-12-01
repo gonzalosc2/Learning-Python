@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 # to see plots created inside a Jupyter Notebook, then type
-#%matplotlib inlinw
+#%matplotlib inline
 
 x = np.linspace(0,5,11)
 y = x ** 2
