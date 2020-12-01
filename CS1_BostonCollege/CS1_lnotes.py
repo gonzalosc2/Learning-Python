@@ -302,3 +302,5 @@ L = ['b1','b2','b3','b4','b5','b6','b7']
 plt.pie(a, labels = L)
 plt.title('A pie chart example')
 plt.show()
+
+# ADVANCED PYTHON
