@@ -2,7 +2,7 @@
 # author: Gonzalo Salazar
 # course: Python for Data Science and Machine Learning Bootcamp
 # purpose: lecture notes
-# description: Section 06 - Python for Data Visualization, Matplotlib
+# description: Section 08 - Python for Data Visualization, Matplotlib
 # other: N/A
 ####################################
 
