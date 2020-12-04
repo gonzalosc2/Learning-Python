@@ -303,4 +303,44 @@ plt.pie(a, labels = L)
 plt.title('A pie chart example')
 plt.show()
 
-# ADVANCED PYTHON
+## SORTING
+# The are algorithms and they have three main reasons to be studied:
+#   First, sorting algorithms illustrate many creative approaches to problem
+#   solving and these approaches can be applied to solve other problems.
+#   Second, sorting algorithms are good for practicing fundamental programming
+#   techniques using selection statemens, loops, methods, and arraus.
+#   Third, sorting algorithms are excellent examples to demonstrate algorithm
+#   performance.
+# The data to be sorted should be intergers, floats., words or anything,
+# but we must stick to one type in order to sort
+# For simplicity we may assume:
+#   data to be sorted are intergers
+#   data are sorted in ascending order
+#   data are stored in a list or a numpy array
+
+### Insertion sort: it sorts a list of values by repeatedly inserting an unsorted
+#                   list into a sorted sublist until the whole list is sorted.
+# [2,9,5,4,8,1,6]  // Unsorted
+# Pick 2 and create a new sorted list, then evaluate if 9 is bigger or smaller
+# than 2, if the first case, then it goes to the right and we continue picking 5.
+# Otherwise, do the opposite. As the list starts increasing, the number is evaluated
+# against each value until it finds its position in the sorted list.
+
+# Nice website to visualize algorithms
+# www.visualgo.net
+
+### Bubble sort: similar to insertion sort, but now we compare two numbers each time
+# [2,9,5,4,8,1,6]  // Unsorted
+# Pick up 2,9, are these sorted? yes!, so left them as they are.
+# Now compare 9 and 5, are they sorted? No, so switch and the result is  [2,5,9,4,8,1,6]
+# Then continue with 9 and 4 and so on.
+# We will end up with a new unsorted list, so the process is repeated with this
+# new list until we get a new list. The process of traversing the list till its
+# end is call a Pass (like an iteration).
+
+### Quick Sort: it selects an element, called the pivot, in the array. Then it
+# divides the array into two parts such that all the elements in the first part
+# are less than or equal to the pivot and all the elements in the second part are
+# greater than the pivot. Finally, it recursively apply the quick sort algorithm
+# to the first part and then the second part. # The pivot should always start being
+# the first item on the array.
