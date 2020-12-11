@@ -47,7 +47,7 @@ def even_odd(number):
         return 'Odd'
 
 # SLEEP
-from time import sleep  # any library should be loaded at the beginning of the script
+from time import sleep, time  # any library should be loaded at the beginning of the script
 
 sleep(1)  # it suspends the execution of the script for the specified # of seconds (e.g., 1)
 
@@ -367,4 +367,84 @@ plt.show()
 #   -> 5<6 -> [1,2,4,5] -> 9>6 -> [1,2,4,5,6] -> 9>7 -> [1,2,4,5,6,7] -> 9>8
 #   -> [1,2,4,5,6,7,8,9]
 
-### Bucket Sort: 
+### Bucket Sort: it assumes the keys are in the range from 0 to N-1. We need N buckets
+# labeled 0,1,...,N-1. If an element's key is i, the element is put into the bucket i.
+# Each bucket holds the elements with the same key value. An ArrayList can be used to 
+# implement a bucket. If a bucket already has elements inside, a new element should be
+# be compared with those inside to know its corresponding order. We could decide between
+# ascending or descending order. (Let's assume ascending order) At the end, all the 
+# elements from a bucket are extracted (in order) to construct a unique sorted list.
+# Bucket sort in practice:
+#[34,36,19,27,22,10,7] // Unsorted
+# First item: 34
+# bucket 1 - 0-9:   [  ]   
+# bucket 2 - 10-19: [  ] 
+# bucket 3 - 20-29: [  ] 
+# bucket 4 - 30-39: [34]
+# Second item: 36, 34<36
+# bucket 1 - 0-9:   [  ]   
+# bucket 2 - 10-19: [  ] 
+# bucket 3 - 20-29: [  ] 
+# bucket 4 - 30-39: [34,36]  
+# ...
+# Fifth item: 22, 22<27
+# bucket 1 - 0-9:   [  ]   
+# bucket 2 - 10-19: [19] 
+# bucket 3 - 20-29: [22,27] 
+# bucket 4 - 30-39: [34,36]  
+# ..
+# Last item: 7
+# bucket 1 - 0-9:   [7]   
+# bucket 2 - 10-19: [10,19] 
+# bucket 3 - 20-29: [22,27] 
+# bucket 4 - 30-39: [34,36]  
+# Finally: [b1,b2,b3,b4] -> [7,10,19,22,27,34,36]
+
+### Radix Sort: it uses a similar approach to bucket sorting, but this time it sorts
+# elements by its decimal, units, tens, hundreds, etc., from lower to bigger figures.
+# Note that it does not require to sort elements inside each bucket.
+#[331,454,230,34,343,45,59,453,345,231,9] // Unsorted
+# first iteration (by units):
+# bucket 0: [230]   
+# bucket 1: [231,331] 
+# bucket 2: [] 
+# bucket 3: [343,453]  
+# bucket 4: [34,454]
+# bucket 5: [45,345] 
+# bucket 6: [] 
+# bucket 7: [] 
+# bucket 8: []  
+# bucket 9: [9,59]
+# 
+#[230,231,331,453,343,34,454,45,345,9,59] // Unsorted
+# second iteration (by tens):
+# bucket 0: [9]   
+# bucket 1: [] 
+# bucket 2: [] 
+# bucket 3: [230,231,331,34]  
+# bucket 4: [343,45,345]
+# bucket 5: [453,454,59] 
+# bucket 6: [] 
+# bucket 7: [] 
+# bucket 8: []  
+# bucket 9: []
+# 
+#[9,230,231,331,34,345,45,345,453,454,59] // Unsorted
+# third iteration (by hundreds):
+# bucket 0: [9,34,45,59]   
+# bucket 1: [] 
+# bucket 2: [230,231] 
+# bucket 3: [331,345,345]  
+# bucket 4: [453,454]
+# bucket 5: [] 
+# bucket 6: [] 
+# bucket 7: [] 
+# bucket 8: []  
+# bucket 9: []
+# 
+#[9,34,45,59,230,231,331,345,345,453,454] // Sorted
+
+
+
+
+
