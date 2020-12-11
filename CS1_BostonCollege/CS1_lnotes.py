@@ -318,7 +318,7 @@ plt.show()
 #   data are sorted in ascending order
 #   data are stored in a list or a numpy array
 
-### Insertion sort: it sorts a list of values by repeatedly inserting an unsorted
+### Insertion Sort: it sorts a list of values by repeatedly inserting an unsorted
 #                   list into a sorted sublist until the whole list is sorted.
 # [2,9,5,4,8,1,6]  // Unsorted
 # Pick 2 and create a new sorted list, then evaluate if 9 is bigger or smaller
@@ -329,9 +329,9 @@ plt.show()
 # Nice website to visualize algorithms
 # www.visualgo.net
 
-### Bubble sort: similar to insertion sort, but now we compare two numbers each time
+### Bubble Sort: similar to insertion sort, but now we compare two numbers each time
 # [2,9,5,4,8,1,6]  // Unsorted
-# Pick up 2,9, are these sorted? yes!, so left them as they are.
+# Pick up 2,9, are these sorted? yes!, so left them as they were.
 # Now compare 9 and 5, are they sorted? No, so switch and the result is  [2,5,9,4,8,1,6]
 # Then continue with 9 and 4 and so on.
 # We will end up with a new unsorted list, so the process is repeated with this
@@ -344,3 +344,27 @@ plt.show()
 # greater than the pivot. Finally, it recursively apply the quick sort algorithm
 # to the first part and then the second part. # The pivot should always start being
 # the first item on the array.
+
+### Merge Sort: similar to the idea used behind the quicksort (recursion). We start
+# spliting a list in two different lists of the same size (in case of odd number of
+# elements, the list is divided in one containing an even number of elements and
+# another containing an odd number of elements). We repeat this with each new list,
+# subsequently until we get lists containing just two elements.
+# Then, in a second step, we switch the elements belonging to a list that is unsorted.
+# After that, we start merging two lists together by comparing their intial elements
+# first (to get the first value of the new list). Then we compare the first element
+# of the second list with the second element of the first list, in order to now which 
+# one goes second, and finally we compare the remaining two elements. We repeat this
+# process with each two pair of lists, and also with those new lists until we get
+# a unique final list.
+# [2,9,5,4,8,1,6,7]  // Unsorted
+# Merge sort in practice:
+# dividing part: [2,9,5,4] and [8,1,6,7] -> [2,9]  [5,4]  [8,1]  [6,7]
+# switching part: [2,9]  [4,5]  [1,8]  [6,7]
+# merge part: [2,9] - [4,5] -> 2>4 -> [2] -> 4<9 -> [2,4] -> 9>5 -> [2,4,5,9]
+#   and [1,8] - [6,7] -> 1<6 -> [1] -> 8>6 -> [1,6] -> 8>7 -> [1,6,7,8]
+#   now [2,4,5,9] - [1,6,7,8] -> 2>1 -> [1] -> 2<6 -> [1,2] -> 4<6 -> [1,2,4]
+#   -> 5<6 -> [1,2,4,5] -> 9>6 -> [1,2,4,5,6] -> 9>7 -> [1,2,4,5,6,7] -> 9>8
+#   -> [1,2,4,5,6,7,8,9]
+
+### Bucket Sort: 
