@@ -443,3 +443,25 @@ plt.show()
 # bucket 9: []
 # 
 #[9,34,45,59,230,231,331,345,345,453,454] // Sorted
+
+# OBJECT-ORIENTED PROGRAMMING
+# Problem when accesing unknown members. Ocassionally,
+# the name of an attribute or method of a class is only
+# given at run time so the way to recover them is by 
+# using getattr(object_instance, string), where string
+# is a string which contains the name of an attribute 
+# or method of a class.
+
+# f = student('Bob Smith', 23)
+# getattr(f,'full name') -> 'Bob Smith'
+# getattr(f,'get_age') -> <method get_age of class studentClass at 010B3C2>
+# getattr(f,'get_age')() -> 23
+# getattr(f,'get_birthday') -> AttributeError - No method!
+
+# Regarding AttibuteErrors, we can check whether an object 
+# instance has or not attributes using 
+# hasattr(object_instance,string)
+# f = student('Bob Smith', 23)
+# hasattr(f,'full name') -> True
+# getattr(f,'get_age') -> True
+# getattr(f,'get_birthday')() -> False
