@@ -12,10 +12,9 @@ I have learned for other sources as well, but I preferred to focus on those that
 
 Note that this repository also contains material related to machine learning and data science. Since I would prefer to learn that using Python, I will be concentrating that content here as well. 
 
-__This repository does not contain any major coding project.__ Minor projects can be found as problem sets or homework assignments. To check the major ones, [check here](https://github.com/gonzalosc2/Coding-Projects).
+__This repository does not contain any major coding project.__ Minor projects can be found as problem sets or homework assignments. _To check the major ones, [check here](https://github.com/gonzalosc2/Coding-Projects)._
 
 Enjoy the content and if you have any suggestion, please let me know.
 
 Best,
 g.
-
