@@ -76,6 +76,7 @@ m3 = np.sqrt(metrics.mean_squared_error(y_test,predic))
 error_measurement = pd.DataFrame([m1,m2,m3],['MAE','MSE','RMSE'],columns = ['Value'])
 error_measurement
 
+del y, X, X_test, X_train, y_train, y_test, m1, m2, m3, error_measurement, lm, predic
 
 ####################################################################################
 # PROJECT EXERCISE - Ecommerce Customers
@@ -135,5 +136,49 @@ sns.lmplot(y = 'Yearly Amount Spent', x = 'Length of Membership', data = df_ecom
 # Comment: this plot reassures what was my interpretation above.
 
 # %%
-## Training and Testing Data
+## Training the model
+y = df_ecomm['Yearly Amount Spent']
+X = df_ecomm[df_ecomm.columns[3:7]]
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size = 0.3,random_state=101)
+
+# Instantiating a linear regression model
+#lm = LinearRegression(copy_X=True, fit_intercept=True, n_jobs=1, normalize=False)
+lm = LinearRegression()
+lm.fit(X_train,y_train)
+
+# %%
+## Predicting with the model
+predic = lm.predict(X_test)
+
+# Checking performance
+sns.scatterplot(predic,y_test)
+
+# %%
+# Evaluating the model by calculating the Mean Absolute Error, Mean Squared 
+# Error, and the Root Mean Squared Error
+m1 = metrics.mean_absolute_error(y_test,predic)
+m2 = metrics.mean_squared_error(y_test,predic)
+m3 = np.sqrt(metrics.mean_squared_error(y_test,predic))
+
+error_measurement = pd.DataFrame([m1,m2,m3],['MAE','MSE','RMSE'],columns = ['Value'])
+error_measurement
+
+# %%
+# Plotting a histogram of the residuals and make sure it looks normally distributed
+sns.distplot(y_test-predic, bins = 50)
+
+# %%
+## Interpreting
+coef = pd.DataFrame(lm.coef_,X.columns,columns = ['Coeff'])
+coef 
+# Comment: the focus should be put on membership time instead of increasing
+#          efforts on the mobile app or a website development. More people
+#          should follow and remain following the business. Notice, a one-year
+#          increase in membership time is associated with a 61.27 increase in 
+#          yearly amount spent! (compared to a 0.19 and 38.59 associated with
+#          both time on Website and on App). Though the company should also
+#          focus more on their mobile app.
+
+# NOTICE: IN THIS PROJECT WE HAVEN'T USED HYPOTHESIS TESTING TO EVALUATE 
+#         THE SIGNIFICANCE OF EACH COEFFICIENT!
 
