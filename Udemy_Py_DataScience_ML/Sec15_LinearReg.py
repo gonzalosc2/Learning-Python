@@ -8,6 +8,7 @@
 
 #%%
 import os
+from numpy.lib.function_base import corrcoef
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -75,6 +76,64 @@ m3 = np.sqrt(metrics.mean_squared_error(y_test,predic))
 error_measurement = pd.DataFrame([m1,m2,m3],['MAE','MSE','RMSE'],columns = ['Value'])
 error_measurement
 
+
 ####################################################################################
 # PROJECT EXERCISE - Ecommerce Customers
+# %%
+# Reading in the Ecommerce Customers csv file as a DataFrame called customers
+df_ecomm = pd.read_csv('Ecommerce Customers')
+
+# Checking the head of customers, and check out its info() and describe() methods
+df_ecomm.head()
+df_ecomm.info()
+df_ecomm.describe()
+
+# %%
+## Exploratory Data Analysis
+# Comparing the Time on Website and Yearly Amount Spent.
+sns.jointplot(y = 'Time on Website', x = 'Yearly Amount Spent', data = df_ecomm)
+
+# Comparing the Time on APP and Yearly Amount Spent.
+sns.jointplot(y = 'Time on App', x = 'Yearly Amount Spent', data = df_ecomm)
+# Comment: given the first correlation, which is null, it might be happening that people 
+#          visiting the website find it interesting and then continue following through the
+#          App (if they did not already started following it through the App since the very 
+#          beginning). Perhaps people prefer to use the App because it is more convenient 
+#          since they do not have to turn on a PC each time they want to buy something as 
+#          well as they can use the App wherever they want to. Besides, since they have their
+#          smartphones with them all the time, they can spend more time shopping and selecting
+#          what they really want to buy, this also eases the way the buy something since they
+#          only need to press a bottom to buy (assuming they can register their card on their
+#          devices).
+#          
+#          The previous phenomenon might be explaining why the yearly amount spent is 
+#          positively associated with spending more time on APP. The correlation between 
+#          both is not pefect, though (around 0.5).
+
+# %%
+# Comparing Time on App and Length of Membership
+sns.jointplot(y = 'Time on App', x = 'Length of Membership', data = df_ecomm, kind = 'hex')
+# Comment: similarly people who spend more time on App is positively correlated with people who
+#          hold older memberships. This phenomenon might be explained by the fact that older
+#          members found the App easier to use compared to the Website given the experience they 
+#          have had across the years. Perhaps those who remain using the website are people who
+#          is reluctant to switch, or that do not understand how to use it very well. Here, 
+#          a measure for technology's insertion and age, would be great to measure that.
+
+# %%
+# Exploring types of relationships across the entire data set
+sns.pairplot(df_ecomm)
+# Comment: those who have yearly spent more are those who have older memberships (the strogest
+#          correlation). This might be a fidelity effect, in the sense that people who have 
+#          spent more years buying in here, are the ones who prefer to buy all their clothing 
+#          with us.
+
+# %%
+# Create a linear model plot (using seaborn's lmplot) of Yearly Amount Spent vs. Length of 
+# Membership.
+sns.lmplot(y = 'Yearly Amount Spent', x = 'Length of Membership', data = df_ecomm)
+# Comment: this plot reassures what was my interpretation above.
+
+# %%
+## Training and Testing Data
 
