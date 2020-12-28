@@ -171,13 +171,13 @@ sns.distplot(y_test-predic, bins = 50)
 ## Interpreting
 coef = pd.DataFrame(lm.coef_,X.columns,columns = ['Coeff'])
 coef 
-# Comment: the focus should be put on membership time instead of increasing
-#          efforts on the mobile app or a website development. More people
+# Comment: more focus should be put on membership time instead of increasing
+#          efforts on the mobile app or in a website development. More people
 #          should follow and remain following the business. Notice, a one-year
 #          increase in membership time is associated with a 61.27 increase in 
-#          yearly amount spent! (compared to a 0.19 and 38.59 associated with
-#          both time on Website and on App). Though the company should also
-#          focus more on their mobile app.
+#          yearly amount spent (compared to a 0.19 and 38.59 associated with
+#          both time on Website and time on App, resp.). Though the company 
+#          should also focus more on their mobile app.
 
 # NOTICE: IN THIS PROJECT WE HAVEN'T USED HYPOTHESIS TESTING TO EVALUATE 
 #         THE SIGNIFICANCE OF EACH COEFFICIENT!
