@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from sklearn import metrics
 
 #%matplotlib inline
 os.chdir('/Users/gsalazar/Documents/C_Codes/Learning-Python/Udemy_Py_DataScience_ML/lr_data')
@@ -55,5 +56,25 @@ cdf
 # holding everything else constant, a one unit increase in average area income
 # is associated with a 21.52 dolars increase in the unit price
 
+#%%
 ## PREDICTION
+predic = lm.predict(X_test)  # predicted housing prices
+
+# Checking how well is performing the model
+plt.scatter(y_test,predic)
+
+# Plotting residuals
+sns.displot(y_test-predic, kde = True)  
+# Notice residuals are normally distributed -> model selected was a correct choice for the data.
+
+# %%
+# Measuring performance
+m1 = metrics.mean_absolute_error(y_test,predic)
+m2 = metrics.mean_squared_error(y_test,predic)
+m3 = np.sqrt(metrics.mean_squared_error(y_test,predic))
+error_measurement = pd.DataFrame([m1,m2,m3],['MAE','MSE','RMSE'],columns = ['Value'])
+error_measurement
+
+####################################################################################
+# PROJECT EXERCISE - Ecommerce Customers
 
