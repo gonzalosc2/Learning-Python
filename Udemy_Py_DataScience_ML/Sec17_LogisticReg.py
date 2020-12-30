@@ -2,8 +2,9 @@
 # author: Gonzalo Salazar
 # course: Python for Data Science and Machine Learning Bootcamp
 # purpose: lecture notes
-# description: Section 15 - Logistic Regression
-# datasets: (i) Titanic: Machine Learning from Disaster (source: Kaggle)
+# description: Section 17 - Logistic Regression
+# datasets: (i) Titanic: Machine Learning from Disaster (source: Kaggle), 
+#           (ii) Advertising data: fake data.
 ####################################
 
 ### LOGISTIC REGRESSION ###
