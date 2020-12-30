@@ -162,17 +162,84 @@ del y, X, X_test, X_train, y_train, y_test, logm, predic
 
 ####################################################################################
 # PROJECT EXERCISE - Advertisement
+
+# This data set contains the following features:
+    # 'Daily Time Spent on Site': consumer time on site in minutes
+    # 'Age': cutomer age in years
+    # 'Area Income': Avg. Income of geographical area of consumer
+    # 'Daily Internet Usage': Avg. minutes a day consumer is on the internet
+    # 'Ad Topic Line': Headline of the advertisement
+    # 'City': City of consumer
+    # 'Male': Whether or not consumer was male
+    # 'Country': Country of consumer
+    # 'Timestamp': Time at which consumer clicked on Ad or closed window
+    # 'Clicked on Ad': 0 or 1 indicated clicking on Ad
+
 # %%
 # Reading in the Ecommerce Customers csv file as a DataFrame called customers
-adv = pd.read_csv('Advertising.csv')
+ad_data = pd.read_csv('Advertising.csv')
 
 # Checking the head of customers
-adv.head()
-
-# Checking out its info() and describe() methods
-adv.info()
-adv.describe()
-
-
+ad_data.head()
 
 # %%
+# Checking out its info() and describe() methods
+ad_data.info()
+ad_data.describe()
+
+# %%
+## EXPLORATORY DATA ANALYSIS
+sns.axes_style('whitegrid')
+# Checking users' age
+sns.histplot(ad_data['Age'],bins=30, alpha=.4)
+# Comment: people is mostly 30 to 40 yo.
+
+# %%
+# Displaying relationship between Age and Area Income
+sns.jointplot(y='Area Income', x='Age', data = ad_data,kind='reg',color='g')
+# Comment: it appears that younger people are concentrated in a geographical
+#          area with higher avg. income
+
+# %%
+# Displaying relationship between Daily Time Spent on Site and Age
+sns.jointplot(y='Daily Time Spent on Site', x='Age', data = ad_data,kind='kde',color='g', fill=True)
+# Comment: young people spend more time on site than old people
+
+# %%
+# Displaying relationship between Daily Time Spent on Site and Daily Internet Usage
+sns.jointplot(y='Daily Time Spent on Site', x='Daily Internet Usage', data = ad_data,kind='reg',color='g')
+# Comment: there seems to be two groups. (i) high daily internet usage is associated with
+#          high daily time spent on site, and viceversa.
+
+# %%
+# Checking all the possible relationships among variables
+sns.pairplot(data=ad_data,hue='Clicked on Ad',kind='hist',diag_kind='auto',corner=True)
+# Comment: people who click on ad uses internet less compared to those who do not click on ad,
+#          regardless of age, time spent on site or area income. 
+#          Those who click on ad use fewer internet than those who do not click (the same happens
+#          when we check the time spent on site). The latter also seems to be younger than the
+#          former, on average.
+
+# %%
+## TRAINING AND TESTING THE MODEL
+# Establishing the data we'll work with as well as defining training and testing samples
+X = ad_data.drop(['Clicked on Ad','Ad Topic Line','City','Country','Timestamp'],axis = 1)
+y = ad_data['Clicked on Ad']
+# NOTICE: I did not consider City or Country because I did not have enough representation for
+#         each of these categories (i.e., just 4/5 people from each country)
+
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size = 0.3)
+
+# Instantiating a linear regression model and training it
+logm = LogisticRegression()
+logm.fit(X_train,y_train)
+
+#%%
+# Predicting probability of surviving
+predic = logm.predict(X_test)  
+
+# Checking performance 
+print('Classification Report')
+print(classification_report(y_test,predic))
+print('\nConfusion Matrix')
+print(confusion_matrix(y_test,predic))
