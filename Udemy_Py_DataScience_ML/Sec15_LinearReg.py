@@ -84,7 +84,7 @@ del y, X, X_test, X_train, y_train, y_test, m1, m2, m3, error_measurement, lm, p
 # Reading in the Ecommerce Customers csv file as a DataFrame called customers
 df_ecomm = pd.read_csv('Ecommerce Customers')
 
-# Checking the head of customers, and check out its info() and describe() methods
+# Checking the head of customers, and checking out its info() and describe() methods
 df_ecomm.head()
 df_ecomm.info()
 df_ecomm.describe()
