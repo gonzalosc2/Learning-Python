@@ -30,13 +30,52 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import sklearn
+#import sklearn
+
 #%matplotlib inline
 
 os.chdir('/Users/gsalazar/Documents/C_Codes/Learning-Python/Udemy_Py_DataScience_ML/rsys_data')
 # %%
-# Loading and visualizing data
-
-
-df = pd.DataFrame(cancer['data'],columns = cancer['feature_names'])
+# Loading movie data
+columns_names = ['used_id','item_id','rating','timestamp']
+df = pd.read_csv('u.data',sep='\t',names=columns_names)
 df.head()
+
+# %%
+# Loading movie title data
+movie_titles = pd.read_csv('Movie_Id_Titles')
+movie_titles.head()
+
+# %%
+# Merging both data sets
+df = pd.merge(df,movie_titles,on='item_id')
+df.head()
+
+# %%
+# Checking the mean rating by movie (top 5)
+df.groupby('title')['rating'].mean().sort_values(ascending=False).head()
+
+# %%
+# Checking the number of reviews by movie (top 5)
+df.groupby('title')['rating'].count().sort_values(ascending=False).head()
+
+# %%
+# Creating a dataframe out of the previous calculations
+ratings = pd.DataFrame(df.groupby('title')['rating'].mean())
+ratings['num of ratings'] = pd.DataFrame(df.groupby('title')['rating'].count())
+ratings.head()
+
+# %%
+# Checking the distribution of number of reviews
+ratings['num of ratings'].hist(bins=70)
+# Comment: Most of the movies were not reviewed.
+
+# %%
+# Checking the distribution of average rating
+ratings['rating'].hist(bins=70)
+# Comment: Mean around 3. A bunch of bad movies with the lowest rating. 
+
+# %%
+# Checking the relationship between both
+sns.jointplot(x='rating', y='num of ratings',data=ratings,alpha=.5)
+# Comment: the higher the number of reviews, the higher the rating of a movie
