@@ -3,10 +3,10 @@
 # course: Python for Data Science and Machine Learning Bootcamp
 # purpose: lecture notes
 # description: Section 22 - Principal Component Analysis
-# datasets: 
+# datasets: breast cancer diagnoses from sklearn
 # ###################################
 
-# ## PCA (aka general factor analysis) ###
+## PCA (aka general factor analysis) ###
 # An unsupervised statistical technique used to examine the interrelations among a set of
 # variables in order to identify the underlying structure of those variables. Where regression
 # determines a line of best fit to a data set, factor analysis determines several orthogonal 
