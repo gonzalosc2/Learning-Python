@@ -3,7 +3,7 @@
 # course: Python for Data Science and Machine Learning Bootcamp
 # purpose: lecture notes
 # description: Section 20 - Support Vector Machines
-# datasets: 
+# datasets: sklearn datasets, (i) breast cancer diagnoses and (ii) iris plants dataset
 ####################################
 
 ### SVM ###
