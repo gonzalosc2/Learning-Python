@@ -54,7 +54,7 @@ from sklearn.metrics import classification_report
 os.chdir('/Users/gsalazar/Documents/C_Codes/Learning-Python/Udemy_Py_DataScience_ML/nlp_data')
 # %%
 # Downloading a data set from the nltk librabry
-nltk.download_shell()  # write 'stopwords'
+#nltk.download_shell()  # write 'stopwords'
 
 # %%
 # Loading the dataset and checking its format
@@ -70,7 +70,7 @@ for mess_no, message in enumerate(messages[:10]):
 
 # %%
 # Reloading the dataset in a proper way
-messages = pd.read_csv('sms_spam_collection/SMSSpamCollection',sep='\t',names=['label','message'])
+messages = pd.read_csv('SMSSpamCollection',sep='\t',names=['label','message'])
 messages.head()
 
 # %%
