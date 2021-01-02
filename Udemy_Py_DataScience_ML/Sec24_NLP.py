@@ -3,7 +3,7 @@
 # course: Python for Data Science and Machine Learning Bootcamp
 # purpose: lecture notes
 # description: Section 24 - Natural Lenguage Processing
-# datasets: (i) SMSSpamCollection (source: UCI) (ii) yelp reviews (source: Kaggle)
+# datasets: (i) SMSSpamCollection (source: UCI)
 # ###################################
 
 ## NLP ###
