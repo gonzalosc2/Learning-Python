@@ -7,7 +7,7 @@
 ####################################
 
 ### K NEAREST NEIGHBORS ###
-# A CLASSIFICATION algorithm which is divded in two:
+# A CLASSIFICATION algorithm which is divided in two:
 #   Training: where we store all the data
 #   Prediction:
 #       1. Calculate the distance from x (the new point) to all points in our data

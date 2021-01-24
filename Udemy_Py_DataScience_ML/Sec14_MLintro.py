@@ -70,7 +70,7 @@
 #                             it punishes large error predictions, but changes
 #                             squares the unit of measurement.
 #   Root mean square error (RMSE): sqrt[] 1/n Sum_i^n (2) y_i \hat y_i )^2) ]
-# Their interpretaion will always depend on the context. A RMSE of $10 is splendid for predicting the 
+# Their interpretation will always depend on the context. A RMSE of $10 is splendid for predicting the 
 # price of a house, but horrible for predicting the price of a candy bar. Try to compare it with the 
 # average value of the label in our data.
 
